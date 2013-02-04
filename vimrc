@@ -16,6 +16,7 @@ set ruler		"右下角显示光标位置
 set showcmd		"右下角现实敲入的命令
 set showmatch   "显示括号对应
 set incsearch	"实时搜索
+set hidden    "Lusty需要这样的"
 
 "格式化 formate
 map Q gq
@@ -88,8 +89,8 @@ else
 endif
 
 if MySys() == "mac"
-	set guifont=TextMate_Regular:h13
-	set guifontwide=Hei_Regular:h13
+	set guifont=TextMate_Regular:h11
+	set guifontwide=Hei_Regular:h11
 elseif MySys() == "linux"
 	set guifont=Monospace
 endif
@@ -118,6 +119,8 @@ if has("gui_macvim")
 
 	let macvim_skip_cmd_opt_movement = 1
 	let macvim_hig_shift_movement = 1
+
+	set fuopt=maxvert,maxhorz
 
 	set transparency=8
 	set guioptions-=T "egmrt
@@ -150,8 +153,7 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 
 "let g:jslint_neverAutoRun=1
 let g:jslint_command = 'jsl'
-let g:jslint_command_options = '-nofilelisting -nocontext -conf \
-			/Users/deemstone/.jsl.conf -nosummary -nologo -process'
+let g:jslint_command_options = '-nofilelisting -nocontext -conf ~/.jsl.conf -nosummary -nologo -process'
 map <F5> :call JavascriptLint()<cr>
 
 "autocmd BufRead * :lcd! %:p:h
@@ -159,6 +161,7 @@ map <F5> :call JavascriptLint()<cr>
 " filetype
 "autocmd BufNewFile,BufRead *.vm setlocal ft=html
 
+""autocmd BufNewFile,BufRead *.{tpl} set filetype=html
 " language support
 autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4 textwidth=79
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
