@@ -1,10 +1,58 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Maintainer: Dexter.Yy <dexter.yy at gmail.com>
-" Last Change: $LastChangedDate$ $Rev$
+" Maintainer: jicheng.li <deemstone at gmail.com>
+" 
+" Content
+" 1. Vundle
+" 2. Basic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 编辑器基本配置:行号/缩进/语法加亮...
+" 1. Vundle 管理插件
+" https://github.com/gmarik/Vundle.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+" file navigator
+Plugin 'Command-T'
+Plugin 'ctrlp.vim'
+Plugin 'The-NERD-tree'
+" for javascript
+Plugin 'jshint.vim'
+Plugin 'jsbeautify'
+Plugin 'Tabular'
+Plugin 'snipMate'
+" syntx"
+Plugin 'mustache/vim-mustache-handlebars'
+"Plugin 'coffee.vim'
+" others
+Plugin 'preview'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 2. Basic 编辑器基本配置:行号/缩进/语法加亮...
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 set history=400
@@ -72,6 +120,7 @@ set nowritebackup
 
 set shiftwidth=4
 set tabstop=4
+set expandtab  " space代替tab输入
 set nowrap
 set wildmenu
 set matchpairs=(:),{:},[:],<:>
@@ -89,8 +138,8 @@ else
 endif
 
 if MySys() == "mac"
-	set guifont=TextMate_Regular:h11
-	set guifontwide=Hei_Regular:h11
+	""set guifont=Courier:h11
+	""set guifontwide=SimHei:h11
 elseif MySys() == "linux"
 	set guifont=Monospace
 endif
@@ -171,6 +220,8 @@ autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+" NERDTree dont fold
+autocmd FileType nerdtree setlocal foldmethod=marker
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -373,3 +424,7 @@ nmap <silent> <leader>nt :NERDTree<cr>
 "" Use underbar completion.
 "let g:NeoComplCache_EnableUnderbarCompletion = 1 
 
+nnoremap <silent><F1> :JSHint<CR>
+inoremap <silent><F1> <C-O>:JSHint<CR>
+vnoremap <silent><F1> :JSHint<CR>
+cnoremap <F1> JSHint
